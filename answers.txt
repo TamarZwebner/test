@@ -1,0 +1,50 @@
+exercise 1:
+There is indeed an execution problem, waiting the same time twice
+To get a reply from a remote server
+When you can do it at the same time.
+
+async function asyncCall() {
+  await Promise.all([
+    (async () => console.log(await getNumberFromServer()))(),
+    (async () => console.log(await getNumberFromServer()))(),
+  ]);
+}
+asyncCall();
+
+exercise 4:
+1. The first loop will run without waiting for the second loop that does await
+2. 
+async function run1000(): Promise<void> {
+  const promises: Promise<number>[] = [];
+	for(let i=0; i< 1000;i++) {
+		promises.push(await getNumberFromServer());
+	}
+}
+
+exercise 7:
+* request endpoint:
+ POST/users/rest/api/v1.3/lists/{listName}/members?action=get
+ request body:
+ {
+  "queryAttribute" : "c",<- Specifies the query attribute that you are sending. It can be one of the following values:"c" – Customer ID
+  "fieldList" : ["name"...],<-The fieldList lists the fields that will be returned for each recipient in the response.
+  "ids" : ["xxxxxxxxx", "xxxxxxxxx"...]
+ }
+* PUT/users/{userId}
+*Create multiple new users using a HTTP POST request.
+ This is similar to adding a single user, but instead you must list multiple users in an array.
+ request endpoint:
+ POST/users/CreateMultipleUsers
+
+
+exercise 8:
+Access tokens are issued to third-party clients by an authorization server
+with the approval of the resource owner. 
+The client uses the access token to access the protected resources hosted by the resource server.
+
+Refresh Tokens are credentials used to obtain access tokens. 
+Refresh tokens are issued to the client by the authorization server and 
+are used to obtain a new access token when the current access token becomes invalid or expires, 
+or to obtain additional access tokens with identical or narrower scope.
+
+

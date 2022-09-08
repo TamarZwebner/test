@@ -1,0 +1,16 @@
+/* -- exercise 6 -- */
+/* A Selector that applies a style sheet for the 5th element inside container */
+div:nth-of-type(4n) {
+    background-color: rgb(203, 211, 114);
+}
+/* A Selector that applies a style sheet for every element that has a class .mango and element type is li */
+li,
+.mango {
+    color: rgb(232, 14, 14);
+}
+/* A Selector that applies stylesheet for every element whose type attribute is green */
+li[type~="green"],
+div[type~="green"] {
+    background-color: aquamarine;
+}
+

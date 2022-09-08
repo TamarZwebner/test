@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script>
+        let g = "<a href='http://example.com' id='example'>";
+        function getElemAttributes(elemText) {
+            const tag = /^<\w+\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[\w\-.:]+))?)*\s*\/?>/;
+            let startTag = elemText.match(tag);
+            startTag = startTag ? startTag[0] : '';
+            const re_attribs = /\s+([\w\-.:]+)(\s*=\s*(?:"([^"]*)"|'([^']*)'|([\w\-.:]+)))?/g;
+            const attribs = {};
+            let match = re_attribs.exec(startTag);
+            while (match != null) {
+                var attrib = match[1];
+                var value = match[1];
+                if (match[2]) {
+                    value = match[3] ? match[3] :
+                        match[4] ? match[4] : match[5];
+                }
+                attribs[attrib] = value;
+                match = re_attribs.exec(startTag);
+            }
+            console.log(attribs);
+            return attribs;
+        }
+    </script>
+    <div>
+        <button onclick="getElemAttributes(g)">Click to get all attribute</button>
+    </div>
+</body>
+
+</html>
